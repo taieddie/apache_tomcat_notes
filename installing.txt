@@ -1,0 +1,21 @@
+Installing tomcat apache -
+ https://linuxize.com/post/how-to-install-tomcat-9-on-ubuntu-18-04/#step-6-test-the-tomcat-installation
+
+Permissions were not correct, so could not change files
+1. Create tomcat user
+chown -R tomcat:tomcat /opt/tomcat
+2. Do not allow users to modify configuration
+chmod -R g+r /opt/tomcat/latest/conf
+3. Allow users within group to modify files
+chmod -R g+w /opt/tomcat/latest/logs
+chmod -R g+w /opt/tomcat/latest/temp
+chmod -R g+w /opt/tomcat/latest/webapps
+chmod -R g+w /opt/tomcat/latest/work
+4. Activate sticky bit for files. This lets only the owner of the file/directory or root user to delete or rename the file
+chmod -R g+s /opt/tomcat/latest/conf
+chmod -R g+s /opt/tomcat/latest/logs
+chmod -R g+s /opt/tomcat/latest/temp
+chmod -R g+s /opt/tomcat/latest/webapps
+chmod -R g+s /opt/tomcat/latest/work
+5. Add user to group
+usermod -a -G tomcat USER_NAME
